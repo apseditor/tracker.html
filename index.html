@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Fitness & Bengali Meal Tracker (60kg Plan)</title>
+    <title>Daily Fitness & Bengali Meal Tracker</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -71,7 +71,6 @@
             align-items: center;
         }
 
-        /* Metric Trackers */
         .metric-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -127,7 +126,6 @@
             color: var(--text);
         }
 
-        /* Meal Checklist */
         .meal-item {
             display: flex;
             align-items: flex-start;
@@ -169,7 +167,6 @@
             line-height: 1.3;
         }
 
-        /* Progress Bar */
         .progress-bar-bg {
             width: 100%;
             height: 8px;
@@ -198,15 +195,13 @@
 <div class="container">
     <div class="header">
         <h1>Daily Routine Tracker</h1>
-        <p>Target: 60kg Bodyweight Cut | Whole-Food Bengali Diet</p>
+        <p>Bodyweight Cut | Whole-Food Bengali Diet</p>
     </div>
 
-    <!-- Quick Targets Status -->
     <div class="card">
         <div class="card-title">Daily Progress</div>
         <div class="metric-grid">
-            
-            <!-- Steps -->
+
             <div class="metric-box">
                 <div class="metric-label">Steps (Target: 6,000)</div>
                 <div class="metric-value"><span id="steps-val">0</span> / 6000</div>
@@ -219,7 +214,6 @@
                 </div>
             </div>
 
-            <!-- Water -->
             <div class="metric-box">
                 <div class="metric-label">Water (Target: 2.4L)</div>
                 <div class="metric-value"><span id="water-val">0.0</span> / 2.4 L</div>
@@ -232,7 +226,6 @@
                 </div>
             </div>
 
-            <!-- Calories -->
             <div class="metric-box">
                 <div class="metric-label">Calories</div>
                 <div class="metric-value"><span id="cal-val">0</span> / 1400 kcal</div>
@@ -241,7 +234,6 @@
                 </div>
             </div>
 
-            <!-- Protein -->
             <div class="metric-box">
                 <div class="metric-label">Protein</div>
                 <div class="metric-value"><span id="prot-val">0</span> / 105 g</div>
@@ -253,7 +245,6 @@
         </div>
     </div>
 
-    <!-- Workout Tracker -->
     <div class="card">
         <div class="card-title">Activity & Workout</div>
         <div class="meal-item">
@@ -265,11 +256,9 @@
         </div>
     </div>
 
-    <!-- Meal Plan Checklist -->
     <div class="card">
         <div class="card-title">Bengali Meal Checklist</div>
 
-        <!-- Breakfast -->
         <div class="meal-item">
             <input type="checkbox" class="meal-checkbox" id="m1" onchange="updateMeals(350, 28, this.checked)">
             <div class="meal-details">
@@ -279,7 +268,6 @@
             </div>
         </div>
 
-        <!-- Lunch -->
         <div class="meal-item">
             <input type="checkbox" class="meal-checkbox" id="m2" onchange="updateMeals(450, 35, this.checked)">
             <div class="meal-details">
@@ -289,7 +277,6 @@
             </div>
         </div>
 
-        <!-- Snack -->
         <div class="meal-item">
             <input type="checkbox" class="meal-checkbox" id="m3" onchange="updateMeals(200, 15, this.checked)">
             <div class="meal-details">
@@ -299,7 +286,6 @@
             </div>
         </div>
 
-        <!-- Dinner -->
         <div class="meal-item">
             <input type="checkbox" class="meal-checkbox" id="m4" onchange="updateMeals(380, 26, this.checked)">
             <div class="meal-details">
@@ -314,7 +300,6 @@
 </div>
 
 <script>
-    // State management
     let state = {
         steps: 0,
         water: 0.0,
@@ -324,9 +309,8 @@
         meals: { m1: false, m2: false, m3: false, m4: false }
     };
 
-    // Load from local storage
     window.onload = function() {
-        const saved = localStorage.getItem('routine_state_60kg');
+        const saved = localStorage.getItem('routine_state');
         if (saved) {
             state = JSON.parse(saved);
             render();
@@ -334,7 +318,7 @@
     };
 
     function save() {
-        localStorage.setItem('routine_state_60kg', JSON.stringify(state));
+        localStorage.setItem('routine_state', JSON.stringify(state));
     }
 
     function addSteps(amount) {
@@ -357,7 +341,7 @@
             state.calories = Math.max(0, state.calories - cal);
             state.protein = Math.max(0, state.protein - prot);
         }
-        
+
         state.meals.m1 = document.getElementById('m1').checked;
         state.meals.m2 = document.getElementById('m2').checked;
         state.meals.m3 = document.getElementById('m3').checked;
